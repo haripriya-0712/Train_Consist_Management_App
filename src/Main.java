@@ -1,19 +1,34 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+class Bogie {
+    String name;
+    int capacity;
+    Bogie(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+    }
+    @Override
+    public String toString() {
+        return name + " -> Capacity: " + capacity;
+    }
+}
 
 public class TrainConsistApp {
 
     public static void main(String[] args) {
 
-        System.out.println("Train Consist Management App");
-        Set<String> bogieIDs = new HashSet<>();
-        bogieIDs.add("BG101");
-        bogieIDs.add("BG102");
-        bogieIDs.add("BG103");
-        bogieIDs.add("BG101");
-        bogieIDs.add("BG102");
-        System.out.println("Unique Bogie IDs in Train:");
-        System.out.println(bogieIDs);
+        System.out.println("=== Train Consist Management App ===");
+        List<Bogie> bogies = new ArrayList<>();
+        bogies.add(new Bogie("Sleeper", 72));
+        bogies.add(new Bogie("AC Chair", 56));
+        bogies.add(new Bogie("First Class", 40));
+        bogies.sort(Comparator.comparingInt(b -> b.capacity));
+        System.out.println("\nBogies sorted by capacity (ascending):");
+
+        for (Bogie b : bogies) {
+            System.out.println(b);
+        }
 
         System.out.println("\nProgram continues...");
     }
