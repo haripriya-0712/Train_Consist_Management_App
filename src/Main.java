@@ -1,19 +1,28 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.*;
+class Bogie {
+    String name;
+    int capacity;
+
+    Bogie(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+    }
+}
 
 public class TrainConsistApp {
 
     public static void main(String[] args) {
 
-        System.out.println("Train Consist Management App");
-        Set<String> bogieIDs = new HashSet<>();
-        bogieIDs.add("BG101");
-        bogieIDs.add("BG102");
-        bogieIDs.add("BG103");
-        bogieIDs.add("BG101");
-        bogieIDs.add("BG102");
-        System.out.println("Unique Bogie IDs in Train:");
-        System.out.println(bogieIDs);
+        System.out.println("=== Train Consist Management App ===");
+        List<Bogie> bogies = new ArrayList<>();
+        bogies.add(new Bogie("Sleeper", 72));
+        bogies.add(new Bogie("AC Chair", 56));
+        bogies.add(new Bogie("First Class", 40));
+        int totalSeats = bogies.stream()
+                .map(b -> b.capacity)
+                .reduce(0, Integer::sum);
+        System.out.println("\nTotal Seating Capacity: " + totalSeats);
 
         System.out.println("\nProgram continues...");
     }
